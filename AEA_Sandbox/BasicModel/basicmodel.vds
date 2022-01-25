@@ -1,0 +1,5 @@
+"Commodity","WOD","DEM","ELC"
+"Commodity","WOD","NRG","COL"
+"Process","WOD","IRE","MINCOAL"
+"Process","MIN_REG","IRE","MINCOAL"
+"Process","WOD","ELE","COL_PL"

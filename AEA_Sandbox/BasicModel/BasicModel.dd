@@ -1,0 +1,397 @@
+* the option $ONEMPTY allows empty sets of parameters in GAMS
+$ONEMPTY
+
+*-------------------------------------------------------------------------
+* Currencies & Units
+*-------------------------------------------------------------------------
+
+* the currency or currencies
+SET CUR
+/
+EURO    'Euro 1999'
+/;
+
+* all the units used in the model
+SET UNITS
+/
+GW      'Electric capacity in GW'
+Mtoe    'Mega tons oil equivalent'
+Mtoea   'Mega tons oil equivalent per year'
+/;
+
+* units for commodities (subset of UNITS)
+SET UNITS_COM
+/
+Mtoe    'Mega tons oil equivalent'
+/;
+
+* units for the capacity of processes (subset of UNITS)
+SET UNITS_CAP
+/
+GW      'Electric capacity in GW'
+Mtoea   'Mega tons oil equivalent per year'
+/;
+
+* units for the activity of processes (subset of UNITS)
+SET UNITS_ACT
+/
+Mtoe    'Mega tons oil equivalent'
+/;
+
+
+*-------------------------------------------------------------------------
+* Time horizon of the model - periods
+*-------------------------------------------------------------------------
+
+* years for which data is supplied
+SET DATAYEAR(ALLYEAR)
+/
+1998    '1998'
+1999    '1999'
+2000    '2000'
+2001    '2001'
+2002    '2002'
+2003    '2003'
+2004    '2004'
+2005    '2005'
+2010    '2010'
+2020    '2020'
+/;
+
+* milestones - average year for each modelling period
+SET MILESTONYR(ALLYEAR)
+/
+1999    '1999'
+2000    '2000'
+2001    '2001'
+2002    '2002'
+2003    '2003'
+2004    '2004'
+2005    '2005'
+2010    '2010'
+2020    '2020'
+/;
+
+* years before the model horizon (taking into account old investements)
+SET PASTYEAR(ALLYEAR)
+/
+1998    '1998'
+/;
+
+* pastyears + milestones together
+SET MODLYEAR(ALLYEAR)
+/
+1998    '1998'
+1999    '1999'
+2000    '2000'
+2001    '2001'
+2002    '2002'
+2003    '2003'
+2004    '2004'
+2005    '2005'
+2010    '2010'
+2020    '2020'
+/;
+
+* specify beginning year for model periods
+PARAMETER B 'Beginning year of model period'
+/
+1999 = 1999
+2000 = 2000
+2001 = 2001
+2002 = 2002
+2003 = 2003
+2004 = 2004
+2005 = 2005
+2010 = 2006
+2020 = 2011
+/;
+
+* specify end year for model periods
+PARAMETER E 'End year of each model period'
+/
+1999 = 1999
+2000 = 2000
+2001 = 2001
+2002 = 2002
+2003 = 2003
+2004 = 2004
+2005 = 2005
+2010 = 2010
+2020 = 2020
+/;
+
+* specify length/duration of each model period
+PARAMETER D 'Length of each model period'
+/
+1999 = 1
+2000 = 1
+2001 = 1 
+2002 = 1
+2003 = 1
+2004 = 1
+2005 = 1
+2010 = 5
+2020 = 10
+/;
+
+* specify the middle year for each model period
+PARAMETER M 'Middle year of each model period'
+/
+1999 = 1999
+2000 = 2000
+2001 = 2001
+2002 = 2002
+2003 = 2003
+2004 = 2004
+2005 = 2005
+2010 = 2008
+2020 = 2016
+/;
+
+*-------------------------------------------------------------------------
+* Regions
+*-------------------------------------------------------------------------
+
+* all regions including import and export regions
+SET ALL_REG
+/
+WOD     'WORLD'
+MIN_REG 'Mining Import Region'
+/;
+
+* modelling regions only (subset of ALL_REG)
+SET REG(ALL_REG)
+/
+WOD     'WORLD'
+/;
+
+*-------------------------------------------------------------------------
+* Discount rate
+*-------------------------------------------------------------------------
+
+* global parameter to set base year for discount rates
+*(internal TIMES default = 1999)
+SCALAR G_DYEAR      'Year to discount to'
+/
+1999
+/;
+
+* general discount rate
+PARAMETER G_DRATE   'Discount rate for a currency'
+/
+WOD .1999   .EURO = 1E-14
+* discount rate is ste to be zero (zero is not allowed, so it is very small (1E-14))
+/;
+
+
+*-------------------------------------------------------------------------
+* Time slices
+*-------------------------------------------------------------------------
+
+* here analysis only on an annual basis
+SET TS
+/
+ANNUAL
+/;
+
+* duration of this time fraction -> 100% (1.0)
+PARAMETER G_YRFR
+/
+WOD .ANNUAL = 1.0
+/;
+
+*-------------------------------------------------------------------------
+* Commodities
+*-------------------------------------------------------------------------
+
+* define the commodity groups
+SET COM_GRP
+/
+COL     'Fuel coal'
+ELC     'Electricity'
+/;
+
+* define the commodities
+SET COM(COM_GRP)
+/
+COL     'Fuel coal'
+ELC     'Electricity'
+/;
+
+* define type of the commodities
+SET COM_TMAP(REG,COM_TYPE,COM)
+/
+WOD     .NRG    .COL
+WOD     .DEM    .ELC
+/;
+
+* define on which time slice level the commodities are varying
+SET COM_TS(REG,COM,TS)
+/
+WOD     .COL    .ANNUAL
+WOD     .ELC    .ANNUAL
+/;
+
+* units for the commodities
+SET COM_UNIT(REG,COM,UNITS_COM)
+/
+WOD     .COL    .Mtoe
+WOD     .ELC    .Mtoe
+/;
+
+*-------------------------------------------------------------------------
+* Demand projections
+*-------------------------------------------------------------------------
+
+* demand projections for the commodities over the model time horizon
+PARAMETER COM_PROJ(REG,ALLYEAR,COM)
+/
+WOD    .1999    .ELC = 1000
+WOD    .2000    .ELC = 2000
+WOD    .2001    .ELC = 3000
+WOD    .2002    .ELC = 4000
+WOD .   2003    .ELC = 5000
+WOD .   2004    .ELC = 6000
+WOD .   2005    .ELC = 7000
+WOD .   2010    .ELC = 40000
+WOD .   2020    .ELC = 90000
+/;
+
+*-------------------------------------------------------------------------
+* Processes
+*-------------------------------------------------------------------------
+
+* define all the processes that are used in the model
+SET PRC
+/
+COL_PL  'Coal power plant'
+MINCOAL 'Mining of coal'
+/;
+
+* map the processes to a type (member of the process group)
+* e.g. ELE (electricity production; CHP ... combined heat & power;
+* IRE ... inter-regional exchange; XTRACT ... extraction
+SET PRC_MAP(REG,PRC_GRP,PRC)
+/
+WOD     .ELE    .COL_PL     'electricity generation process'
+WOD     .IRE    .MINCOAL    'import process'
+/;
+
+* define on which time slice level the processes may vary
+SET PRC_TSL(REG,PRC,TSLVL)
+/
+WOD     .COL_PL     .ANNUAL
+WOD     .MINCOAL    .ANNUAL
+/;
+
+* capacity units for the processes
+SET PRC_CAPUNT(REG,PRC,COM_GRP,UNITS_CAP)
+/
+WOD     .COL_PL     .ELC    .GW
+WOD     .MINCOAL    .COL    .Mtoea
+/;
+
+* activity units for the processes
+SET PRC_ACTUNT(REG,PRC,COM_GRP,UNITS_ACT)
+/
+WOD     .COL_PL     .ELC    .Mtoe
+WOD     .MINCOAL    .COL    .Mtoe
+/;
+
+*-------------------------------------------------------------------------
+* Topology
+*-------------------------------------------------------------------------
+
+* topology of each process (ins and outs)
+SET TOP(REG,PRC,COM,IO)
+/
+WOD     .COL_PL     .COL    .IN     'consumes coal'
+WOD     .COL_PL     .ELC    .OUT    'produces electricity'
+/;
+
+* topology for import and export processes has to be defined in a special set
+SET TOP_IRE(ALL_REG,COM,ALL_REG,COM,PRC)
+/
+MIN_REG .COL   .WOD    .COL   .MINCOAL
+/;
+
+*-------------------------------------------------------------------------
+* Process parameters
+*-------------------------------------------------------------------------
+
+* conversion factor for processes from capacity to activity;
+* capacity needed to produce one unit of activity, e.g. GW/Mtoe
+PARAMETER PRC_CAPACT(REG,PRC)
+/
+WOD    .COL_PL  = 0.75
+WOD    .MINCOAL = 1.0
+/;
+
+* relationship between any commodity, or group of commodities, to allow
+* individual outputs to be tied to a particular input or output to each
+* other or entire commodity groups to one another
+PARAMETER FLO_FUNC(REG,ALLYEAR,PRC,COM_GRP,COM_GRP,TS)
+/
+WOD    .1999   .COL_PL     .COL    .ELC    .ANNUAL = 0.40
+/;
+
+* annual availibility factor of a process
+PARAMETER NCAP_AF(REG,ALLYEAR,PRC,TS,BD)
+/
+WOD     .1999   .COL_PL     .ANNUAL .UP = 0.8
+WOD     .1999   .MINCOAL    .ANNUAL .UP = 1.0
+/;
+
+*-------------------------------------------------------------------------
+* Process parameters - costs
+*-------------------------------------------------------------------------
+* prices for imported commodities
+* unit here: MEuro/Mtoe;
+PARAMETER IRE_PRICE(REG,ALLYEAR,PRC,COM,TS,ALL_REG,IE,CUR)
+/
+WOD .1999   .MINCOAL    .COL   .ANNUAL .MIN_REG    .IMP    .EURO = EPS
+/;
+
+* investment costs for new capacities;
+* assumed to be zero in this simple example
+PARAMETER NCAP_COST(REG,ALLYEAR,PRC,CUR)
+/
+WOD     .1999   .COL_PL     .EURO = 100.0
+WOD     .1999   .MINCOAL    .EURO = 100.0
+/;
+
+* fixed operating and maintenance costs for new capacity
+* assumed to be zero in this simple example
+PARAMETER NCAP_FOM(REG,ALLYEAR,PRC,CUR)
+/
+WOD     .1999   .COL_PL     .EURO = EPS
+WOD     .1999   .MINCOAL    .EURO = EPS
+/;
+
+* variable costs
+* assumed to be zero in this simple example
+PARAMETER ACT_COST(REG,ALLYEAR,PRC,CUR)
+/
+WOD     .1999   .COL_PL     .EURO = EPS
+WOD     .1999   .MINCOAL    .EURO = EPS
+/;
+
+*-------------------------------------------------------------------------
+* Process parameters - technical and economic lifetime
+*-------------------------------------------------------------------------
+
+* technical lifetime of each process
+PARAMETER NCAP_TLIFE(REG,ALLYEAR,PRC)
+/
+WOD     .1999   .COL_PL  = 5
+WOD     .1999   .MINCOAL = 5
+/;
+ 
+* economical lifetime of each process
+PARAMETER NCAP_ELIFE(REG,ALLYEAR,PRC)
+/
+WOD     .1999   .COL_PL  = 5
+WOD     .1999   .MINCOAL = 5
+/;
+

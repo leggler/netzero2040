@@ -1,0 +1,72 @@
+$TITLE  TIMES -- VERSION 1.3.8
+***********
+* LIMROW ... number of equations listed explictly (for each generic equation)
+* LIMCOL ... number of parameters for each variable listed (for each generic variable)
+* zero --> no information is generated
+OPTION LIMROW=10000, LIMCOL=10000, SOLPRINT=ON, ITERLIM=500000;
+***********
+OPTION RESLIM=500000, PROFILE=1, SOLVEOPT=REPLACE;
+OPTION LP=CPLEX;
+OPTION MIP=CPLEX;
+OPTION SYSOUT=ON;
+
+* switch for including the entire code in the LST-file
+$OFFLISTING
+*$ONLISTING
+
+* (de)activate validation to force VAR_CAP/COMPRD and "square" obj costing
+$SET VALIDATE 'NO'
+* (de)activate reduction of matrix for speed increase
+$SET REDUCE   'NO'
+*--------------------------------------------------------------*
+* BATINCLUDE calls should all be with lower case file names!!! *
+*--------------------------------------------------------------*
+* initialize the environment variables
+$SET VDA                            'YES'
+$SET DEBUG                          'NO'
+$SET DUMPSOL                        'NO'
+$SET SOLVEDA                        'YES'
+$SET SOLANS                         'NO'
+$SET SOLVE_NOW                      'YES'
+$SET MODEL_NAME                     'TIMES'
+$IF DECLARED REG      $SET STARTRUN 'RESTART'
+$IF NOT DECLARED REG  $SET STARTRUN 'SCRATCH'
+
+* elastic demand switch
+$SET TIMESED 'NO'
+
+* switch: write base prices to file
+$SET WRT_BPRICE 'NO'
+
+* merge declarations & data
+$ONMULTI
+
+* the times-slices MUST come 1st to ensure ordering OK
+SET ALL_TS
+/
+ANNUAL ' '
+/
+
+* perform fixed declarations
+$BATINCLUDE initsys.mod
+
+* declare the (system/user) empties
+* here: put extension of extension files
+$BATINCLUDE initmty.mod
+
+* convert 0 => EPS
+$ONEPS
+
+***********
+* DD-File tio be included
+$BATINCLUDE 'BasicModel.dd'
+* name of the Run/Model
+$SET RUN_NAME 'BasicModel'
+***********
+
+G_DYEAR = 1999;
+
+$SET VEDAVDD 'YES'
+
+* do the rest
+$BATINCLUDE maindrv.mod mod
