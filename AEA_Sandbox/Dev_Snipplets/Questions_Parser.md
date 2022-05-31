@@ -36,3 +36,12 @@
 process = "EGRDELC00"
 commoditty = "ELCELC"
 
+# Variables of interest
+VAR_FLO
+VAR_CAP 
+VAR_NCAP
+VAR_CUMPROD
+VAR_ACT
+
+# parameter 
+# todo 

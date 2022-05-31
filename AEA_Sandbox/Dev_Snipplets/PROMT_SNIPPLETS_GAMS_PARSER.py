@@ -1,9 +1,9 @@
 
-
 # Start GAMS DB 
 import gams
 import pandas as pd
 import os
+import pyam
 root = os.getcwd()
 
 # two example OeModels

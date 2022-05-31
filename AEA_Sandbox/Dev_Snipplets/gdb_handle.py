@@ -18,6 +18,7 @@ def load_gdx_from_path(path: str):
     project_root = Path(__file__).parent.parent.parent
     # todo make "path" useful
     path = os.path.join(project_root, "AEA_Sandbox/OeM/OEM-Jan-Base.gdx")
+    path = os.path.join(project_root, r"C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\DD-Files-v02\GAMSSAVE\BASE-Model.gdx")
     # todo @leggler error handling or file name check or smth
     ws = gams.GamsWorkspace()
     gdx_db = ws.add_database_from_gdx(path)
@@ -143,11 +144,12 @@ def generate_pandas_dataframe(symbol: str, commodity_filter: str, process_filter
 
 if __name__ == "__main__":
     db_path = "AEA_Sandbox/OeM/OEM-Jan-Base.gdx"
+    db_path = r"C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\DD-Files-v02\GAMSSAVE\BASE-Model.gdx"
     gdx_db = load_gdx_from_path(db_path)
-
+    print(gdx_db)
     # switch this on to retrigger generate df otherwise load from pickle
     # do this if you changed something in generate_pandas_dataframe
-    reload = False
+    reload = True
     if reload:
         df = generate_pandas_dataframe(symbol="VAR_FLO", process_filter="EGRDELC00", commodity_filter="ELCELC")
         df.to_pickle("VAR_FLO_dev.pickle")
