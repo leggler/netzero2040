@@ -1,0 +1,478 @@
+=1
+=0IBM ILOG CPLEX   24.2.3 r46072 Released May 22, 2014 WEI x86_64/MS Windows    
+=1
+
+IBM ILOG CPLEX   24.2.3 r46072 Released May 22, 2014 WEI x86_64/MS Windows    
+=2
+=1
+--- GAMS/Cplex licensed for continuous and discrete problems.
+=2
+=1
+Cplex 12.6.0.0
+
+=2
+ 
+ 
+--------------------------------------------------------------
+CONTROL FILE STATISTICS
+--------------------------------------------------------------
+Rows : 156701, columns : 296632, nonzeroes : 986994
+Free Rows          : 0
+Iteration limit    : 999999
+Resource  limit    : 5.000000e+004
+Objective variable : 0
+Objective sense    : minimize
+Advanced basis     : no
+ 
+ 
+=1
+Reading parameter(s) from "C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\DD-Files-v02\cplex.opt"
+=2
+=1
+>>  scaind 0
+=2
+=1
+>>  rerun yes
+=2
+=1
+>>  iis yes
+=2
+=1
+>>  lpmethod 4
+=2
+=1
+>>  baralg 1
+=2
+=1
+>>  barcrossalg 1
+=2
+=1
+>>  barorder 2
+=2
+=1
+Finished reading from "C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\DD-Files-v02\cplex.opt"
+=2
+
+
+Option Values:
+----------------------------------------------------
+usebasis              0
+cutoff                0
+tryint                0
+domlim                0
+advind                0
+aggcutlim             3
+aggfill               10
+aggind                -1
+auxrootthreads        0
+baralg                1
+barcolnz              0
+barcrossalg           1
+bardisplay            1
+barepcomp             1e-008
+bargrowth             1e+012
+baritlim              999999
+barmaxcor             -1
+barobjrng             1e+020
+barorder              2
+barqcpepcomp          1e-007
+barstartalg           1
+bbinterval            7
+bndstrenind           -1
+brdir                 0
+bttol                 0.9999
+calcqcpduals          1
+cliques               0
+clocktype             0
+clonelog              0
+coeredind             -1
+computeserver         
+covers                0
+craind                1
+crossoveralg          default
+cutlo                 -1e+075
+cutpass               0
+cuts                  0
+cutsfactor            4
+cutup                 1e+075
+depind                -1
+dettilim              1e+075
+disjcuts              0
+divetype              0
+divfltup              1e+299
+divfltlo              -1e+299
+.divflt               0
+dpriind               0
+dtprefix              bnd
+dtterm                1
+dumpcuts              0
+dumptree              0
+dumplp                0
+eachcutlim            2100000000
+epagap                1e-006
+epgap                 0.0001
+epint                 1e-005
+epmrk                 0.01
+epopt                 1e-006
+epper                 1e-006
+eprelax               1e-006
+eprhs                 1e-006
+feasopt               0
+feasoptmode           0
+.feaspref             1
+fixoptfile            
+flowcovers            0
+flowpaths             0
+flushfiles            0
+fpheur                0
+fraccand              200
+fraccuts              0
+fracpass              0
+gubcovers             0
+heurfreq              0
+iafile                
+iatriggerfile         
+iatriggertime         60
+iis                   1
+implbd                0
+interactive           0
+intsollim             2100000000
+itlim                 2100000000
+lbheur                0
+liftprojcuts          0
+lpalg                 default
+lpmethod              4
+ltol                  0
+mcfcuts               0
+memoryemphasis        0
+mipdisplay            4
+mipemphasis           0
+mipkappastats         -1
+mipinterval           0
+mipordind             1
+mipordtype            0
+mipsearch             0
+mipstart              0
+miptrace              
+miptracenode          100
+miptracetime          1
+miqcpstrat            0
+mircuts               0
+mpslongnum            1
+mtol                  0
+names                 1
+netdisplay            2
+netepopt              1e-006
+neteprhs              1e-006
+netfind               2
+netitlim              2100000000
+netppriind            0
+nodefileind           1
+nodelim               2100000000
+nodesel               1
+numericalemphasis     0
+objdif                0
+objllim               -1e+075
+objrng               
+objulim               1e+075
+parallelmode          1
+perind                0
+perlim                0
+polishtime            0
+polishafterepagap     0
+polishafterepgap      0
+polishafternode       2100000000
+polishafterintsol     2100000000
+polishaftertime       1e+075
+polishafterdettime    1e+075
+populatelim           20
+ppriind               0
+predual               0
+preind                1
+prelinear             1
+prepass               -1
+preslvnd              0
+pricelim              0
+printoptions          0
+probe                 0
+probetime             1e+075
+probedettime          1e+075
+probread              
+qpmakepsdind          1
+qpmethod              0
+quality               0
+rampupdettimelimit    1e+075
+rampupduration        0
+rampuptimelimit       1e+075
+randomseed            0
+readflt               
+readparams            
+reduce                3
+reinv                 0
+relaxfixedinfeas      0
+relaxpreind           -1
+relobjdif             0
+repairtries           0
+repeatpresolve        -1
+rerun                 yes
+rhsrng               
+rinsheur              0
+rngrestart            
+scaind                0
+secret               
+siftalg               0
+siftdisplay           1
+siftitlim             2100000000
+simdisplay            1
+singlim               10
+solnpool              
+solnpoolmerge         
+solnpoolnumsym        10
+solnpoolagap          1e+075
+solnpoolcapacity      2100000000
+solnpoolgap           1e+075
+solnpoolintensity     0
+solnpoolpop           1
+solnpoolpopdel        
+solnpoolpoprepeat     
+solnpoolprefix        soln
+solnpoolreplace       0
+solutiontarget        0
+solvefinal            1
+startalg              0
+strongcandlim         10
+strongitlim           0
+subalg                0
+submipnodelim         500
+symmetry              -1
+threads               1
+tilim                 50000
+trelim                1e+075
+tuning                
+tuningdisplay         1
+tuningmeasure         1
+tuningrepeat          1
+tuningtilim           10000
+tuningdettilim        1e+007
+usercutcall           
+usercutfirst          10
+usercutfreq           10
+usercutinterval       100
+usercutmult           2
+usercutnewint         1
+usergdxin             bchin.gdx
+usergdxsol            bchsol.gdx
+usergdxname           bchout.gdx
+usergdxnameinc        bchout_i.gdx
+usergdxprefix         
+userheurcall          
+userheurfirst         10
+userheurfreq          10
+userheurinterval      100
+userheurmult          2
+userheurnewint        1
+userheurobjfirst      0
+userincbcall          
+userincbicall         
+userjobid             
+userkeep              0
+usercgmaxcols         2147483647
+usercgadvind          1
+usercgsolopt          0
+usercgdumplp          bchcgdump.lp
+userpricingcall       
+usersolvenodelp       
+varsel                0
+waitforenter          0
+workdir               .
+workmem               128
+writebas              
+writeflt              
+writelp               
+writemps              
+writemst              
+writeord              
+writeparam            
+writepre              
+writesav              
+zerohalfcuts          0
+----------------------------------------------------
+
+=1
+Space for names approximately 24.47 Mb
+Use option 'names no' to turn use of names off
+=2
+Tried aggregator 1 time.
+LP Presolve eliminated 27993 rows and 46270 columns.
+Aggregator did 77961 substitutions.
+Reduced LP has 50747 rows, 172981 columns, and 581734 nonzeros.
+Presolve time = 0.59 sec. (447.70 ticks)
+Parallel mode: none, using 1 thread for barrier
+
+***NOTE: Found 4 dense columns.
+
+Number of nonzeros in lower triangle of A*A' = 1101405
+Total time for approximate-min-fill ordering = 0.36 sec. (447.40 ticks)
+Summary statistics for Cholesky factor:
+  Rows in Factor            = 50751
+  Integer space required    = 393199
+  Total non-zeros in factor = 4534698
+  Total FP ops to factor    = 1744472634
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0  6.8785335e+016 -7.4794196e+015 3.30e+011 8.20e+009 1.25e+013 1.00e+000
+   1  4.1356358e+016 -6.3072559e+015 2.06e+011 5.12e+009 7.89e+012 8.62e-014
+   2  2.7077004e+016 -5.2274153e+015 1.41e+011 3.51e+009 4.38e+012 6.73e-014
+   3  1.8632807e+016 -4.6111786e+015 1.02e+011 2.54e+009 2.83e+012 7.18e-014
+   4  9.0002151e+015 -3.9908761e+015 5.65e+010 1.40e+009 1.82e+012 8.63e-014
+   5  5.4083115e+014 -1.8960136e+015 1.05e+010 2.61e+008 3.49e+011 5.60e-013
+   6  4.7234530e+013 -4.8574684e+014 8.93e+008 2.21e+007 8.96e+010 2.91e-012
+   7  2.9206555e+013 -2.9959932e+014 4.90e+008 1.22e+007 5.58e+010 4.48e-012
+   8  1.5323394e+013 -1.4632803e+014 2.46e+008 6.11e+006 2.74e+010 8.37e-012
+   9  6.5992812e+012 -5.5564255e+013 1.13e+008 2.80e+006 1.03e+010 2.19e-011
+  10  3.6066391e+012 -2.6642123e+013 6.74e+007 1.67e+006 4.86e+009 4.92e-011
+  11  1.4660177e+012 -1.5338299e+013 3.42e+007 8.47e+005 2.74e+009 1.05e-010
+  12  7.4755895e+011 -8.0174087e+012 2.03e+007 5.03e+005 1.40e+009 2.39e-010
+  13  4.2935921e+011 -4.9533369e+012 1.32e+007 3.28e+005 8.56e+008 4.44e-010
+  14  2.6584707e+011 -3.1566200e+012 9.13e+006 2.26e+005 5.39e+008 7.84e-010
+  15  1.6135379e+011 -1.7177159e+012 6.35e+006 1.58e+005 2.87e+008 1.83e-009
+  16  3.4439999e+010 -8.6779479e+011 2.54e+006 6.31e+004 1.41e+008 5.53e-009
+  17  1.2929640e+010 -4.2168416e+011 1.29e+006 3.20e+004 6.76e+007 1.56e-008
+  18  5.3345724e+009 -2.4260782e+011 6.95e+005 1.72e+004 3.87e+007 3.41e-008
+  19  2.5453764e+009 -1.2225530e+011 4.00e+005 9.92e+003 1.94e+007 8.80e-008
+  20  1.2558810e+009 -5.3392945e+010 2.31e+005 5.73e+003 8.42e+006 2.91e-007
+  21  5.8118334e+008 -1.4470282e+010 1.24e+005 3.07e+003 2.26e+006 3.41e-006
+  22  3.6696243e+008 -4.9723688e+009 8.09e+004 2.01e+003 7.72e+005 1.20e-005
+  23  2.0483429e+008 -2.9774484e+009 4.24e+004 1.05e+003 4.64e+005 2.08e-005
+  24  1.6884334e+008 -2.1119240e+009 2.67e+004 6.63e+002 3.34e+005 2.75e-005
+  25  1.5651380e+008 -6.4870596e+008 1.89e+004 4.68e+002 1.16e+005 5.28e-005
+  26  1.7773382e+008 -4.3639733e+008 1.25e+004 3.10e+002 8.74e+004 2.39e-005
+  27  2.0569234e+008 -2.4883421e+008 9.81e+003 2.43e+002 6.54e+004 1.17e-005
+  28  4.2318700e+008 -3.4776387e+006 8.57e+003 2.13e+002 5.80e+004 2.63e-006
+  29  1.3338651e+009  6.5039280e+008 8.36e+003 2.07e+002 5.70e+004 5.84e-007
+  30  5.7000781e+009  5.4404122e+009 8.27e+003 2.05e+002 5.63e+004 1.18e-007
+  31  7.9973475e+010  3.3976419e+010 8.20e+003 2.03e+002 5.61e+004 8.77e-009
+  32  2.4866134e+012  3.8023892e+011 4.32e+003 1.07e+002 5.24e+004 2.99e-009
+  33  4.6465770e+012  4.1619102e+012 1.01e+003 2.52e+001 1.22e+004 6.20e-008
+  34  5.1143016e+012  5.0299608e+012 1.15e+002 2.84e+000 1.73e+003 4.99e-007
+  35  5.1609518e+012  5.1135845e+012 1.82e+001 4.51e-001 7.20e+002 1.30e-006
+  36  5.1673437e+012  5.1455745e+012 4.79e+000 1.19e-001 3.12e+002 3.21e-006
+  37  5.1683273e+012  5.1577107e+012 1.97e+000 4.89e-002 3.54e+002 7.00e-006
+  38  5.1686273e+012  5.1628079e+012 8.96e-001 2.21e-002 7.49e+002 1.37e-005
+  39  5.1687198e+012  5.1650728e+012 4.87e-001 1.19e-002 1.26e+003 2.37e-005
+  40  5.1687059e+012  5.1662200e+012 3.42e-001 8.21e-003 1.22e+003 3.68e-005
+  41  5.1686749e+012  5.1670346e+012 2.55e-001 6.07e-003 1.24e+003 5.94e-005
+  42  5.1686445e+012  5.1681049e+012 2.14e-001 5.06e-003 9.97e+002 2.59e-004
+  43  5.1684675e+012  5.1684133e+012 1.98e-002 4.63e-004 1.40e+002 2.30e-003
+  44  5.1684564e+012  5.1684406e+012 5.26e-003 1.17e-004 2.21e+002 7.14e-003
+  45  5.1684547e+012  5.1684494e+012 1.96e-003 4.23e-005 8.45e+001 2.23e-002
+  46  5.1684543e+012  5.1684517e+012 1.35e-003 2.91e-005 3.65e+001 5.12e-002
+  47  5.1684540e+012  5.1684529e+012 8.56e-004 1.84e-005 1.52e+001 1.42e-001
+  48  5.1684538e+012  5.1684531e+012 5.44e-004 1.18e-005 1.65e+001 1.97e-001
+  49  5.1684537e+012  5.1684534e+012 4.57e-004 9.94e-006 6.89e+000 4.34e-001
+  50  5.1684536e+012  5.1684534e+012 2.50e-004 5.41e-006 3.89e+000 6.05e-001
+  51  5.1684536e+012  5.1684535e+012 1.41e-004 2.99e-006 5.00e+000 1.17e+000
+  52  5.1684536e+012  5.1684535e+012 1.28e-004 1.45e-006 2.01e+001 1.92e+000
+  53  5.1684536e+012  5.1684536e+012 5.83e-005 5.29e-007 7.57e+000 5.45e+000
+Barrier time = 27.80 sec. (31858.57 ticks)
+
+Primal crossover.
+  Primal:  Fixing 61484 variables.
+    61483 PMoves:  Infeasibility 8.94924315e-002  Objective 5.16844509e+012
+    58660 PMoves:  Infeasibility 8.94969624e-002  Objective 5.16844509e+012
+    55745 PMoves:  Infeasibility 8.94394518e-002  Objective 5.16844509e+012
+    52977 PMoves:  Infeasibility 8.94108000e-002  Objective 5.16844509e+012
+    49738 PMoves:  Infeasibility 8.94051156e-002  Objective 5.16844509e+012
+    47537 PMoves:  Infeasibility 8.93995121e-002  Objective 5.16844509e+012
+    43857 PMoves:  Infeasibility 8.93994768e-002  Objective 5.16844509e+012
+    41436 PMoves:  Infeasibility 8.77165853e-002  Objective 5.16844509e+012
+    37838 PMoves:  Infeasibility 8.77165845e-002  Objective 5.16844509e+012
+    35576 PMoves:  Infeasibility 8.62706936e-002  Objective 5.16844509e+012
+    32168 PMoves:  Infeasibility 8.62706910e-002  Objective 5.16844509e+012
+    30303 PMoves:  Infeasibility 8.62699521e-002  Objective 5.16844509e+012
+    27070 PMoves:  Infeasibility 8.50425325e-002  Objective 5.16844509e+012
+    23332 PMoves:  Infeasibility 8.50425097e-002  Objective 5.16844509e+012
+    20769 PMoves:  Infeasibility 8.40417438e-002  Objective 5.16844509e+012
+    17701 PMoves:  Infeasibility 8.40417357e-002  Objective 5.16844509e+012
+    15350 PMoves:  Infeasibility 8.40416806e-002  Objective 5.16844509e+012
+    13482 PMoves:  Infeasibility 8.33236180e-002  Objective 5.16844509e+012
+    12110 PMoves:  Infeasibility 8.33225354e-002  Objective 5.16844509e+012
+    10557 PMoves:  Infeasibility 8.28749698e-002  Objective 5.16844509e+012
+     9612 PMoves:  Infeasibility 8.28471550e-002  Objective 5.16844509e+012
+     8637 PMoves:  Infeasibility 8.28471547e-002  Objective 5.16844509e+012
+     7511 PMoves:  Infeasibility 8.28441472e-002  Objective 5.16844509e+012
+     6318 PMoves:  Infeasibility 8.28435503e-002  Objective 5.16844509e+012
+     4943 PMoves:  Infeasibility 8.28435500e-002  Objective 5.16844509e+012
+     3558 PMoves:  Infeasibility 8.28380325e-002  Objective 5.16844509e+012
+     2324 PMoves:  Infeasibility 8.15945299e-002  Objective 5.16844509e+012
+      821 PMoves:  Infeasibility 3.63843784e-002  Objective 5.16844500e+012
+      172 PMoves:  Infeasibility 4.51178792e-003  Objective 5.16844625e+012
+        0 PMoves:  Infeasibility 4.19568067e-003  Objective 5.16844756e+012
+  Primal:  Pushed 45884, exchanged 15600.
+  Dual:  Fixing 1803 variables.
+     1802 DMoves:  Infeasibility 6.94704612e+003  Objective 5.16844756e+012
+      642 DMoves:  Infeasibility 6.94704615e+003  Objective 5.16844756e+012
+        0 DMoves:  Infeasibility 6.94704618e+003  Objective 5.16844756e+012
+  Dual:  Pushed 1177, exchanged 626.
+Using devex.
+
+Iteration log . . .
+Iteration:     1    Objective     = 5168447555691.531200
+Iteration:    37    Objective     = 5168447555663.492200
+Elapsed time = 31.28 sec. (35036.00 ticks, 37 iterations)
+Iteration:   649    Objective     = 5168447555610.398400
+Iteration:  1061    Objective     = 5168447555525.492200
+Iteration:  1572    Objective     = 5168447555478.938500
+Iteration:  2169    Objective     = 5168447555381.820300
+Iteration:  2259    Objective     = 5168447555379.834000
+Removing shift (18).
+Iteration:  2260    Scaled infeas =             0.003371
+Iteration:  2756    Objective     = 5168480295582.519500
+Iteration:  2903    Objective     = 5168453584435.918000
+Removing shift (1).
+Iteration:  2920    Objective     = 5168453593437.144500
+Iteration:  3092    Objective     = 5168453721008.154300
+Iteration:  4537    Objective     = 5168453716687.215800
+Iteration:  5320    Objective     = 5168453716272.880900
+Iteration:  6385    Objective     = 5168453715994.937500
+Iteration:  7169    Objective     = 5168453715382.468700
+Iteration:  8142    Objective     = 5168453715034.529300
+Iteration:  8919    Objective     = 5168453714629.517600
+Iteration:  9643    Objective     = 5168453714380.137700
+Iteration: 10212    Objective     = 5168453714252.862300
+Iteration: 10959    Objective     = 5168453714108.653300
+Iteration: 11734    Objective     = 5168453713778.759800
+Iteration: 12479    Objective     = 5168453713466.716800
+Iteration: 13268    Objective     = 5168453713256.757800
+Iteration: 13891    Objective     = 5168453713095.828100
+Iteration: 14672    Objective     = 5168453712906.520500
+Iteration: 15406    Objective     = 5168453712709.941400
+Elapsed time = 44.36 sec. (45037.70 ticks, 15580 iterations)
+Iteration: 16043    Objective     = 5168453712520.605500
+Iteration: 16611    Objective     = 5168453712215.376000
+Iteration: 17367    Objective     = 5168453712213.911100
+Iteration: 17974    Objective     = 5168453712213.476600
+Iteration: 18447    Objective     = 5168453712213.381800
+Removing shift (3).
+Iteration: 18448    Objective     = 5168453712213.376000
+Iteration: 18463    Objective     = 5168453712213.376000
+Iteration: 18464    Objective     = 5168453712211.529300
+Iteration: 18493    Objective     = 5168453712211.529300
+Iteration: 18494    Objective     = 5168453712211.834000
+Total crossover time = 21.05 sec. (16802.80 ticks)
+
+Total time on 1 threads = 49.47 sec. (49117.32 ticks)
+=1
+LP status(1): optimal
+Cplex Time: 49.47sec (det. 49117.77 ticks)
+=2
+=1
+Optimal solution found.
+=2
+=1
+Simplex iterations after crossover:  18497
+
+=2
+=1
+Objective : 5168453712211.834000
+
+=2

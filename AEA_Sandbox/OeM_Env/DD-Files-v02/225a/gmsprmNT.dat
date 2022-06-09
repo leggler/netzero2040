@@ -1,0 +1,17 @@
+Input=C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\DD-Files-v02\BASE-Model.RUN
+Output=C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\DD-Files-v02\BASE-Model.lst
+Action=R
+SubSys=C:\GAMS\win64\24.2\gmscmpnt.txt
+ScrDir=C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\DD-Files-v02\225a\
+SysDir=C:\GAMS\win64\24.2\
+CurDir=C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\DD-Files-v02\
+WorkDir=C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\DD-Files-v02\
+PutDir=C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\DD-Files-v02\
+GridDir=C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\DD-Files-v02\225a\
+ScriptNext=225a\gamsnext.cmd
+ScriptFrst="@echo off"
+AppendOut=1
+InputDir1=C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\GAMS_SRCTIMESV454\
+LibIncDir=C:\GAMS\win64\24.2\inclib\
+SysIncDir=C:\GAMS\win64\24.2\
+GDX=C:\Users\lzw\PycharmProjects\Netzero2040_Sandbox\netzero2040\AEA_Sandbox\OeM_Env\DD-Files-v02\GAMSSAVE\BASE-Model.gdx
