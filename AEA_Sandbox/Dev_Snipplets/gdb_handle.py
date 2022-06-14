@@ -126,7 +126,7 @@ def generate_full_pandas_dataframe_var_flow(symbol: str,
         time_scales.append(timescale)
         levels.append(level)
 
-        variables.append(f"{model}|????|{process}")
+        variables.append(f"{model}|{commodities}|{process}")
         units.append(unit)
 
     df = pd.DataFrame({
@@ -259,6 +259,7 @@ if __name__ == "__main__":
 
     gdx_db = load_gdx_from_path(db_path)
     collect_all_combinations_of_symbol(symbol="VAR_FLO", gdx_file=gdx_db)
+
     exit()
     reload = True
     if reload:
@@ -267,8 +268,19 @@ if __name__ == "__main__":
         generate_full_pandas_dataframe_PAR_CAPL(symbol="PAR_CAPL",
                                                 model="OeM",
                                                 scenario=scenario)
-        print("-" * 100)
+        """
+        PAR_PASTI
+        PAR_CAPL
+        addieren
+        """
 
+        """
+        antselle von VAR_FLO können auch diese 2 parameter verwendet werden
+        F_IN
+        F_OUT
+        """
+
+        print("-" * 100)
 
         df = generate_full_pandas_dataframe_var_flow(symbol="VAR_FLO",
                                                      model="OeM",
@@ -302,7 +314,6 @@ if __name__ == "__main__":
         commodity_filter = df["commodity"].str.contains(commodity)
         combined_filter = np.logical_and(process_filter, commodity_filter)
         df_t = df[combined_filter]
-
 
         print(df_t)
     df = pd.read_pickle("VAR_FLO_dev.pickle")
