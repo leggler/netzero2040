@@ -15,7 +15,7 @@ def load_gdx_from_path(path:str):
     """
     project_root = Path(__file__).parent.parent.parent
     # todo make "path" useful
-    path = os.path.join(project_root, "AEA_Sandbox/OeM/OEM-Jan-Base.gdx")
+    path = os.path.join(project_root, path)
     # todo @leggler error handling or file name check or smth
     ws = gams.GamsWorkspace()
     gdx_db = ws.add_database_from_gdx(path)
@@ -33,13 +33,14 @@ def list_all_entities_of_db(db):
         yield x.get_name()
 
 if __name__ == "__main__":
-    db_path = "AEA_Sandbox/OeM/OEM-Jan-Base.gdx"
+    # db_path = "AEA_Sandbox/OeM/OEM-Jan-Base.gdx"
+    db_path = "AEA_Sandbox/OeM_Env/results/run_2010_2013.gdx"
     gdx_db = load_gdx_from_path(db_path)
 
     # list_all_entities_of_db(gdx_db)
     # switch for development
     names = list(list_all_entities_of_db(gdx_db))
-    if False:
+    if True:
         df = pd.DataFrame([[x.key(3), x.key(4)] for x in gdx_db["VAR_FLO"]], columns=['processes', 'commodities'])
         df.to_pickle("process_commodity_map.pickle")
     df = pd.read_pickle("process_commodity_map.pickle")

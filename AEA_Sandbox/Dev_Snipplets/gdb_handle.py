@@ -3,6 +3,7 @@ from pathlib import Path
 import os
 import pyam
 import pandas as pd
+import numpy as np
 
 from gams.workspace import GamsException
 
@@ -18,9 +19,12 @@ def load_gdx_from_path(path: str):
     project_root = Path(__file__).parent.parent.parent
     # todo make "path" useful
     path = os.path.join(project_root, "AEA_Sandbox/OeM/OEM-Jan-Base.gdx")
+    path = os.path.join(project_root, "AEA_Sandbox/OeM_Env/results/run_2010_2013.gdx")
     # todo @leggler error handling or file name check or smth
     ws = gams.GamsWorkspace()
     gdx_db = ws.add_database_from_gdx(path)
+
+
     return gdx_db
 
 
@@ -58,12 +62,10 @@ def list_all_entities_of_db(db):
 
 
 def read_entity(entity_name):
-    try:
         print("\t" + gdx_db[entity_name].text)
         print("\t" + str(gdx_db[entity_name].number_records))
         print("\t" + str(gdx_db[entity_name].domains_as_strings))
-    except GamsException as e:
-        print(e)
+
 
 
 ###### HELPERS #######
@@ -89,16 +91,11 @@ def easy_filter_by_xx(gdx_db):
         if "ELCELC" == domain.keys[3].upper():
             print("\t", domain)
 
-
-def generate_pandas_dataframe(symbol: str, commodity_filter: str, process_filter: str):
-    """
-
-    :param symbol:
-    :param commodity_filter:
-    :param process_filter:
-    :return:
-    """
-
+def generate_full_pandas_dataframe_var_flow(symbol: str,
+                                            model: str,
+                                            scenario: str,
+                                            unit: str = "TJ"
+                                            ):
     regions = []
     years = []
     processes = []
@@ -108,9 +105,99 @@ def generate_pandas_dataframe(symbol: str, commodity_filter: str, process_filter
     variables = []
     units = []
 
-    for x in gdx_db["VAR_FLO"]:
+    for x in gdx_db.get_symbol(symbol_identifier=symbol):
+        # print(x)
+        #  todo check if there is a better way to filter x.marginal
+        if x.marginal != 0:
+            continue
+
+        region = x.key(0)
+        year = x.key(1)
         process = x.key(3)
         commodity = x.key(4)
+        timescale = x.key(5)
+        level = x.level
+
+
+        regions.append(region)
+        years.append(year)
+        processes.append(process)
+        commodities.append(commodity)
+        time_scales.append(timescale)
+        levels.append(level)
+
+        variables.append(f"{model}|{commodities}|{process}")
+        units.append(unit)
+
+    df = pd.DataFrame({
+        "region": regions,
+        "variable": variables,
+        "process": processes,
+        "commodity": commodities,
+        "unit": units,
+        "year": years,
+        "value": levels,
+        "time_scale": time_scales
+    })
+    df["model"] = model
+    df["scenario"] = scenario
+    return df
+
+def generate_full_pandas_dataframe_PAR_CAPL(symbol: str,
+                                            model: str,
+                                            scenario: str,
+                                            unit: str = "GJ"
+                                            ):
+    regions = []
+    years = []
+    processes = []
+    value = []
+    units = []
+
+    for x in gdx_db.get_symbol(symbol_identifier=symbol):
+        print(x)
+
+        region = x.key(0)
+        year = x.key(1)
+        level = x.value
+
+    return
+
+
+
+def generate_pandas_dataframe(
+        symbol: str,
+        fuel: str,
+        commodity_filter: str,
+        process_filter: str,
+        model: str,
+        scenario: str
+
+                              ):
+    """
+
+    :param symbol:
+    :param fuel:
+    :param commodity_filter:
+    :param process_filter:
+    :param model:
+    :param scenario:
+    :return:
+    """
+    # setup collectors
+    regions = []
+    years = []
+    processes = []
+    commodities = []
+    time_scales = []
+    levels = []
+    variables = []
+    units = []
+
+    for x in gdx_db.get_symbol(symbol_identifier=symbol):
+        process = x.key(3)
+        commodity = x.key(4)
+
         # Test if the entry confirms(?) the filter
         if commodity == commodity_filter and process == process_filter:
             region = x.key(0)
@@ -125,8 +212,7 @@ def generate_pandas_dataframe(symbol: str, commodity_filter: str, process_filter
             time_scales.append(timescale)
             levels.append(level)
 
-            # Todo get Variable name
-            variables.append(f"NONE|Electricity|{process}")
+            variables.append(f"{model}|{fuel}|{process}")
             units.append("GJ")
 
     df = pd.DataFrame({
@@ -137,34 +223,113 @@ def generate_pandas_dataframe(symbol: str, commodity_filter: str, process_filter
         "value": levels,
         "time_scale": time_scales
     })
+    df["model"] = model
+    df["scenario"] = scenario
 
     return df
+
+def collect_all_combinations_of_symbol(symbol, gdx_file):
+    """
+
+    :param symbol:
+    :return:
+    """
+    ps = []
+    cs = []
+    for entry in gdx_file.get_symbol(symbol_identifier=symbol):
+        ps.append(entry.key(3))
+        cs.append(entry.key(4))
+    df = pd.DataFrame({"process": ps, "commodities": cs})
+    df.drop_duplicates().to_clipboard()
+    print(df.drop_duplicates())
+    df[["process"]].drop_duplicates().to_csv("unique_processes.csv", sep=";")
+    df[["commodities"]].drop_duplicates().to_csv("unique_commodities.csv", sep=";")
 
 
 if __name__ == "__main__":
     db_path = "AEA_Sandbox/OeM/OEM-Jan-Base.gdx"
-    gdx_db = load_gdx_from_path(db_path)
+    db_path = r"AEA_Sandbox/OeM_Env/results/run_2010_2013.gdx"
+
+    model = "OeM"
+    scenario = Path(db_path).name
+    print("Scenario:", scenario)
 
     # switch this on to retrigger generate df otherwise load from pickle
     # do this if you changed something in generate_pandas_dataframe
-    reload = False
+
+    gdx_db = load_gdx_from_path(db_path)
+    collect_all_combinations_of_symbol(symbol="VAR_FLO", gdx_file=gdx_db)
+
+    exit()
+    reload = True
     if reload:
-        df = generate_pandas_dataframe(symbol="VAR_FLO", process_filter="EGRDELC00", commodity_filter="ELCELC")
+        gdx_db = load_gdx_from_path(db_path)
+        print("-" * 100)
+        generate_full_pandas_dataframe_PAR_CAPL(symbol="PAR_CAPL",
+                                                model="OeM",
+                                                scenario=scenario)
+        """
+        PAR_PASTI
+        PAR_CAPL
+        addieren
+        """
+
+        """
+        antselle von VAR_FLO können auch diese 2 parameter verwendet werden
+        F_IN
+        F_OUT
+        """
+
+        print("-" * 100)
+
+        df = generate_full_pandas_dataframe_var_flow(symbol="VAR_FLO",
+                                                     model="OeM",
+                                                     scenario=scenario
+
+                                                     )
+
+
+
         df.to_pickle("VAR_FLO_dev.pickle")
     else:
+        df = pd.read_pickle("VAR_FLO_dev.pickle")
         print("WARING: Reload gdx_db was set to:", reload)
 
+
+
+
+
+
+    interface_meta = pd.read_csv("Interface_times_medea.csv", sep=";", decimal=",")
+    for _,row in interface_meta.iterrows():
+        # print(row)
+        symbol = row.ATTRIBUTE
+        process = row.PRC
+        commodity = row.COM
+
+        print(process, commodity)
+
+
+        process_filter = df["process"].str.contains(process)
+        commodity_filter = df["commodity"].str.contains(commodity)
+        combined_filter = np.logical_and(process_filter, commodity_filter)
+        df_t = df[combined_filter]
+
+        print(df_t)
     df = pd.read_pickle("VAR_FLO_dev.pickle")
-    df["model"] = "OeM"
-    df["scenario"] = "OEM-Jan-Base"
     print(df)
+
+
+    """
     df_sum = df.groupby(["model", "scenario", "region", "variable", "unit", "year"]).sum()
     print(df_sum.reset_index())
     df_piv = pd.pivot_table(data=df_sum, columns=["year"], values="value",
                             index=["model", "scenario", "region", "variable", "unit"])
+
+    
     print(df_piv)
     df_piv.to_csv("ELCELC_export_DE.csv", sep=";", decimal=",")
     df_piv.to_csv("ELCELC_export_EN.csv")
 
-
-    # print(pyam.IamDataFrame(df_sum))
+    """
+    print("fin")

@@ -121,3 +121,9 @@ ENV/
 
 # pytest
 .pytest_cache/
+/AEA_Sandbox/OeM_Env/.pytest_cache/
+/AEA_Sandbox/OeM_Env/DD-Files-v02/
+/AEA_Sandbox/OeM_Env/GAMS_SrcTIMESv454/
+/AEA_Sandbox/OeM_Env/Input/
+/AEA_Sandbox/OeM_Env/results/
+/AEA_Sandbox/Dev_Snipplets/raw_symbol_df.p

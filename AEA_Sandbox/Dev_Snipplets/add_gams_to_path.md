@@ -23,6 +23,5 @@ sys.path.append(r'C:\GAMS\37\apifiles\Python\gams')
 ### Alternative II
 
 `set PYTHONPATH=C:\GAMS\37\apifiles\Python\api_37`
-
 `set PYTHONPATH=C:\GAMS\37\apifiles\Python\gams;%PYTHONPATH%`
 

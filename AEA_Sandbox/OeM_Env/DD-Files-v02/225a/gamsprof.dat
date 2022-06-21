@@ -1,0 +1,11 @@
+2121      0.047
+380853 10      0.109       0.057 Equation   EQ_ACTFLO (4538)
+384341 9      0.047       0.082 Equation   EQE_INSHR (7097)
+390314 3      0.219       0.083 Equation   EQE_UCRTS (2479)
+372647 7      0.078       0.044 IF-ELSE    
+399516 1      0.079       0.085 Solve Fini TIMES (257085)
+399516 8      0.078       0.085 GAMS Fini   
+370874 5      0.141       0.034 IF-ELSE    
+381605 4      0.094       0.066 Equation   EQG_COMBAL (1200)
+370990 6      0.297       0.044 IF-ELSE    
+382262 2      0.360       0.079 Equation   EQE_COMBAL (6644)
