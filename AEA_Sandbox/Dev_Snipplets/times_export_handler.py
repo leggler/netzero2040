@@ -257,6 +257,7 @@ def prepare_files_for_standard_export(gdx,
     clean_export_collector.to_csv(f"Archive//times_medea_exchange_{scenario}_{year_filter}_clean_input.csv", sep=";", decimal=",")
     glorious_pyam_df.to_csv(f"Exchange//times_medea_exchange_{scenario}_{year_filter}_pyam.csv", sep=";", decimal=",")
 
+
 def make_df_of_symbol(gdx, symbol_name: str):
     print("making data frame for:", symbol_name)
     gdx_sym = gdx.get_symbol(symbol_name)
